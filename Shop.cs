@@ -14,14 +14,16 @@ namespace dependencis
 
         public IWall wall;
 
-        public Shop(IFloor floor, IRoof roof, IWall wall)
+        public Shop()
         {
-            this.floor = floor;
-            this.roof = roof;
-            this.wall = wall;
+            RegisterTypeInterface();
+
+            floor = ServiceLocator.Resolve<IFloor>();
+            roof = ServiceLocator.Resolve<IRoof>();
+            wall = ServiceLocator.Resolve<IWall>();
         }
 
-        public static void RegisterTypeInterface()
+        public void RegisterTypeInterface()
         {
             ServiceLocator.Register<IFloor, Floor>();
             ServiceLocator.Register<IRoof, Roof>();
